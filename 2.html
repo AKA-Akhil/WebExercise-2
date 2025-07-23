@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Feedback Page</title>
+    <!-- Add your CSS styles here or link to an external stylesheet for proper spacing and layout -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        fieldset {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        legend {
+            font-weight: bold;
+            color: #555;
+            padding: 0 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        input[type="url"],
+        input[type="search"],
+        select,
+        textarea {
+            width: calc(100% - 22px); /* Adjust for padding and border */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        input[type="reset"] {
+            background-color: #f44336;
+        }
+        input:focus:invalid {
+            border: 1px solid #F5192F;
+            box-shadow: 0 0 4px #F5192F;
+        }
+        input:focus:valid {
+            border: 1px solid #64C364;
+            box-shadow: 0 0 4px #64C364;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Workshop Feedback</h1>
+
+        <!-- HTML Comment: This form collects feedback from workshop participants. -->
+        <form action="/submit-feedback" method="post">
+            <fieldset>
+                <legend>Participant Information</legend>
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required minlength="3" maxlength="50" autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="e.g., your@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="organization">Organization/Company:</label>
+                    <input type="text" id="organization" name="organization" placeholder="Enter your organization" required>
+                </div>
+                <div class="form-group">
+                    <label for="jobTitle">Job Title/Role:</label>
+                    <input type="text" id="jobTitle" name="jobTitle" placeholder="e.g., Software Developer, Manager" required>
+                </div>
+                <div class="form-group">
+                    <label for="workshopDate">Workshop Date Attended:</label>
+                    <input type="date" id="workshopDate" name="workshopDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="e.g., 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Format: 123-456-7890">
+                </div>
+                <div class="form-group">
+                    <label>How did you hear about this workshop?</label>
+                    <input type="radio" id="social" name="hearAbout" value="social" required>
+                    <label for="social">Social Media</label>
+                    <input type="radio" id="colleague" name="hearAbout" value="colleague">
+                    <label for="colleague">Colleague/Friend</label>
+                    <input type="radio" id="website" name="hearAbout" value="website">
+                    <label for="website">Company Website</label>
+                    <input type="radio" id="other" name="hearAbout" value="other">
+                    <label for="other">Other</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Workshop Feedback & Evaluation</legend>
+                <div class="form-group">
+                    <label for="overallRating">Overall Workshop Rating (1-10):</label>
+                    <input type="number" id="overallRating" name="overallRating" min="1" max="10" value="5" required>
+                </div>
+                <div class="form-group">
+                    <label for="instructorWebsite">Instructor's Website/LinkedIn:</label>
+                    <input type="url" id="instructorWebsite" name="instructorWebsite" placeholder="e.g., https://linkedin.com/in/instructor" pattern="https?://.+" title="Please enter a valid URL (http or https)">
+                </div>
+                <div class="form-group">
+                    <label>Which aspects were most valuable?</label>
+                    <input type="checkbox" id="content" name="valuable_content" value="content">
+                    <label for="content">Content Quality</label>
+                    <input type="checkbox" id="presentation" name="valuable_presentation" value="presentation">
+                    <label for="presentation">Presentation Style</label>
+                    <input type="checkbox" id="materials" name="valuable_materials" value="materials">
+                    <label for="materials">Course Materials</label>
+                    <input type="checkbox" id="interaction" name="valuable_interaction" value="interaction">
+                    <label for="interaction">Interaction/Q&A</label>
+                    <input type="checkbox" id="networking" name="valuable_networking" value="networking">
+                    <label for="networking">Networking Opportunities</label>
+                </div>
+                <div class="form-group">
+                    <label for="feedback">Additional Comments & Suggestions:</label>
+                    <textarea id="feedback" name="feedback" rows="5" placeholder="Please share your detailed feedback, suggestions for improvement, or any other comments" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="workshopType">Workshop Category:</label>
+                    <select id="workshopType" name="workshopType" required>
+                        <option value="">-- Select workshop type --</option>
+                        <option value="technical">Technical/Programming</option>
+                        <option value="business">Business/Management</option>
+                        <option value="design">Design/Creative</option>
+                        <option value="marketing">Marketing/Sales</option>
+                        <option value="personal">Personal Development</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="certificate">Upload Workshop Certificate (if received):</label>
+                    <input type="file" id="certificate" name="certificate" accept="image/*,.pdf">
+                </div>
+                <div class="form-group">
+                    <label for="searchQuery">Search for Future Workshops:</label>
+                    <input type="search" id="searchQuery" name="searchQuery" placeholder="Search upcoming workshops...">
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                <input type="submit" value="Submit Feedback">
+                <input type="reset" value="Clear Form">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
